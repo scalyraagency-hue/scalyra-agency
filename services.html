@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scalyra Agency — Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0A0A0A; color:#fff; font-family:'Cormorant Garamond',serif; cursor:none; }
+  .cursor { position:fixed; width:6px; height:6px; background:#fff; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+  .cursor-ring { position:fixed; width:28px; height:28px; border:1px solid rgba(255,255,255,.35); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .12s ease; }
+  .silver { background:linear-gradient(180deg,#888 0%,#CCC 30%,#F0F0F0 50%,#AAA 70%,#777 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:24px 64px; display:flex; align-items:center; justify-content:space-between; background:rgba(10,10,10,.92); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,.05); }
+  .nav-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
+  .nav-name { font-size:20px; font-weight:700; font-style:italic; background:linear-gradient(180deg,#888,#CCC 40%,#F0F0F0 50%,#AAA 70%,#777); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .nav-links { display:flex; gap:40px; list-style:none; }
+  .nav-links a { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.4); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover,.nav-links a.active { color:#fff; }
+  .nav-cta { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#0A0A0A; background:linear-gradient(180deg,#AAA,#EEE 50%,#AAA); text-decoration:none; padding:10px 24px; }
+
+  .hero { padding:140px 64px 80px; border-bottom:1px solid rgba(255,255,255,.07); }
+  .s-tag { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:5px; color:rgba(255,255,255,.22); text-transform:uppercase; margin-bottom:14px; }
+  .s-title { font-size:clamp(48px,7vw,88px); font-weight:700; font-style:italic; line-height:.95; }
+  .s-sub { margin-top:20px; font-size:16px; font-weight:300; font-style:italic; color:rgba(255,255,255,.38); max-width:480px; line-height:1.65; }
+
+  .offers-section { padding:80px 64px; }
+  .offer-block { display:grid; grid-template-columns:1fr 2fr; border:1px solid rgba(255,255,255,.08); margin-bottom:2px; transition:border-color .3s; }
+  .offer-block:hover { border-color:rgba(255,255,255,.22); }
+  .offer-block.featured { border-color:rgba(255,255,255,.18); }
+  .offer-left { padding:48px 40px; border-right:1px solid rgba(255,255,255,.07); display:flex; flex-direction:column; justify-content:space-between; }
+  .offer-badge { font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:3px; color:rgba(255,255,255,.22); text-transform:uppercase; margin-bottom:14px; }
+  .offer-block.featured .offer-badge { background:linear-gradient(90deg,#888,#EEE 50%,#888); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .offer-name { font-size:36px; font-weight:700; font-style:italic; color:#fff; line-height:1; margin-bottom:6px; }
+  .offer-price { font-size:26px; font-weight:700; font-style:italic; line-height:1; }
+  .offer-price span { font-size:12px; font-style:normal; -webkit-text-fill-color:rgba(255,255,255,.28); }
+  .offer-cta { display:inline-block; margin-top:28px; font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#0A0A0A; background:linear-gradient(180deg,#AAA,#EEE 50%,#AAA); text-decoration:none; padding:12px 24px; width:fit-content; }
+  .offer-right { padding:48px 40px; }
+  .offer-tagline { font-size:19px; font-style:italic; font-weight:300; color:rgba(255,255,255,.5); margin-bottom:26px; border-left:1.5px solid rgba(255,255,255,.12); padding-left:16px; line-height:1.5; }
+  .offer-features { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .feature { padding:12px 0; border-bottom:.5px solid rgba(255,255,255,.05); display:flex; gap:12px; align-items:flex-start; }
+  .feature:nth-last-child(-n+2) { border-bottom:none; }
+  .feature-dot { width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,.35); margin-top:9px; flex-shrink:0; }
+  .feature-text { font-size:14px; color:rgba(255,255,255,.45); font-weight:300; line-height:1.4; }
+  .feature-text strong { color:rgba(255,255,255,.75); font-weight:600; display:block; font-size:15px; }
+
+  .tournage-section { padding:0 64px 80px; }
+  .tournage-block { background:#0e0e0e; border:1px solid rgba(255,255,255,.08); padding:40px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .tournage-title { font-size:26px; font-weight:700; font-style:italic; color:#fff; margin-bottom:8px; }
+  .tournage-desc { font-size:14px; color:rgba(255,255,255,.38); font-weight:300; line-height:1.6; }
+  .tournage-tag { display:inline-block; font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:3px; color:rgba(255,255,255,.3); text-transform:uppercase; border:.5px solid rgba(255,255,255,.12); padding:4px 10px; margin-bottom:14px; }
+  .tournage-options { display:flex; flex-direction:column; gap:12px; }
+  .t-option { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:.5px solid rgba(255,255,255,.06); }
+  .t-option:last-child { border-bottom:none; }
+  .t-label { font-size:15px; color:rgba(255,255,255,.5); font-style:italic; }
+  .t-price { font-size:22px; font-weight:700; font-style:italic; }
+
+  .digital-section { padding:0 64px 80px; border-top:1px solid rgba(255,255,255,.07); padding-top:80px; }
+  .digital-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:48px; }
+  .digital-card { background:#0e0e0e; border:1px solid rgba(255,255,255,.07); padding:48px 40px; }
+  .d-type { font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:3px; color:rgba(255,255,255,.2); text-transform:uppercase; margin-bottom:14px; }
+  .d-name { font-size:26px; font-weight:700; font-style:italic; color:#fff; margin-bottom:6px; }
+  .d-price { font-size:34px; font-weight:700; font-style:italic; line-height:1; margin-bottom:18px; }
+  .d-desc { font-size:14px; color:rgba(255,255,255,.35); font-weight:300; line-height:1.6; margin-bottom:20px; }
+  .d-features { display:flex; flex-direction:column; gap:8px; }
+  .d-feature { font-size:13.5px; color:rgba(255,255,255,.38); display:flex; gap:10px; }
+  .d-feature::before { content:'—'; color:rgba(255,255,255,.15); flex-shrink:0; }
+
+  footer { padding:38px 64px; border-top:1px solid rgba(255,255,255,.07); display:flex; align-items:center; justify-content:space-between; }
+  .footer-copy { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,.14); text-transform:uppercase; }
+  .footer-links { display:flex; gap:28px; }
+  .footer-links a { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,.2); text-decoration:none; text-transform:uppercase; transition:color .2s; }
+  .footer-links a:hover { color:#fff; }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="36" height="36">
+      <defs><linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#777"/><stop offset="50%" style="stop-color:#F0F0F0"/><stop offset="100%" style="stop-color:#777"/>
+      </linearGradient></defs>
+      <polygon points="40,3 77,40 40,77 3,40" fill="none" stroke="url(#sg)" stroke-width="1.5"/>
+      <polygon points="40,14 66,40 40,66 14,40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".8"/>
+      <text x="40" y="54" font-family="serif" font-size="36" font-weight="700" font-style="italic" fill="url(#sg)" text-anchor="middle" letter-spacing="-2">SA</text>
+    </svg>
+    <span class="nav-name">Scalyra</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Démarrer →</a>
+</nav>
+
+<div class="hero">
+  <div class="s-tag">Nos offres</div>
+  <h1 class="s-title">Des offres taillées<br>pour <span class="silver">scaler.</span></h1>
+  <p class="s-sub">Pas de forfait générique. Chaque offre est construite pour un objectif précis.</p>
+</div>
+
+<div class="offers-section">
+
+  <div class="offer-block">
+    <div class="offer-left">
+      <div>
+        <div class="offer-badge">01 — Starter</div>
+        <div class="offer-name">Essentiel</div>
+        <div class="offer-price silver">750 CHF <span>/ mois</span></div>
+      </div>
+      <a href="contact.html" class="offer-cta">Commencer →</a>
+    </div>
+    <div class="offer-right">
+      <div class="offer-tagline">Vous avez un bon produit mais personne ne le voit. On change ça avec de la publicité ciblée qui ramène de vrais clients.</div>
+      <div class="offer-features">
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Meta Ads complet</strong>Création et gestion sur Instagram & Facebook</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Ciblage précis</strong>Audience qualifiée selon votre zone et client idéal</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Visuels publicitaires</strong>Créations optimisées pour convertir</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Optimisation hebdomadaire</strong>Ajustements selon les performances</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Rapport mensuel</strong>Résultats clairs et transparents</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Support réactif</strong>Disponible 6j/7</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offer-block featured">
+    <div class="offer-left">
+      <div>
+        <div class="offer-badge">★ Plus populaire</div>
+        <div class="offer-name">Growth</div>
+        <div class="offer-price silver">1 600 CHF <span>/ mois</span></div>
+      </div>
+      <a href="contact.html" class="offer-cta">Commencer →</a>
+    </div>
+    <div class="offer-right">
+      <div class="offer-tagline">Contenu de qualité, réseaux gérés et publicités intégrées. On s'occupe de tout pendant que vous vous concentrez sur votre métier.</div>
+      <div class="offer-features">
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>4 vidéos / semaine</strong>Montage professionnel inclus, publication sur Instagram & TikTok</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Stratégie de contenu</strong>Plan éditorial mensuel adapté à votre marché</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Gestion réseaux</strong>Instagram + TikTok gérés au quotidien</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Meta Ads inclus</strong>Campagnes créées et optimisées</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Analyse & optimisation</strong>Suivi et ajustements réguliers</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Rapport mensuel</strong>Vue complète sur votre croissance</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offer-block">
+    <div class="offer-left">
+      <div>
+        <div class="offer-badge">03 — Premium</div>
+        <div class="offer-name">Scale</div>
+        <div class="offer-price silver">2 500 CHF <span>/ mois</span></div>
+      </div>
+      <a href="contact.html" class="offer-cta">Commencer →</a>
+    </div>
+    <div class="offer-right">
+      <div class="offer-tagline">On devient votre département marketing complet. Vous fixez les objectifs, on s'occupe du reste — avec des résultats contractuels.</div>
+      <div class="offer-features">
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Contenu illimité</strong>Montage professionnel inclus, autant de posts que nécessaire</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Toutes plateformes</strong>Instagram, TikTok, Facebook, YouTube Shorts</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Meta Ads avancé</strong>Stratégie multi-campagnes complète</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Branding complet</strong>Identité visuelle cohérente sur tous supports</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Accès direct 7j/7</strong>Ligne dédiée pour toute urgence</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text"><strong>Objectifs contractuels</strong>On s'engage sur des résultats mesurables</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tournage-section">
+  <div class="tournage-block">
+    <div>
+      <span class="tournage-tag">Option — Genève uniquement</span>
+      <div class="tournage-title">Ajoutez le tournage</div>
+      <div class="tournage-desc">Disponible en complément de n'importe quelle offre. Nos équipes se déplacent chez vous à Genève pour filmer votre contenu. Le montage est toujours inclus dans votre offre principale.</div>
+    </div>
+    <div class="tournage-options">
+      <div class="t-option">
+        <div class="t-label">2 tournages / semaine</div>
+        <div class="t-price silver">+500 CHF<span style="font-size:12px;font-style:normal;-webkit-text-fill-color:rgba(255,255,255,.3)"> / mois</span></div>
+      </div>
+      <div class="t-option">
+        <div class="t-label">4 tournages / semaine</div>
+        <div class="t-price silver">+1 000 CHF<span style="font-size:12px;font-style:normal;-webkit-text-fill-color:rgba(255,255,255,.3)"> / mois</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="digital-section">
+  <div class="s-tag">Phase 4 — Produits Digitaux</div>
+  <h2 style="font-size:42px;font-weight:700;font-style:italic;color:#fff">Vous voulez créer<br>votre propre agence ?</h2>
+  <div class="digital-grid">
+    <div class="digital-card">
+      <div class="d-type">Formation en ligne</div>
+      <div class="d-name">Créer son Agence</div>
+      <div class="d-price silver">997 CHF</div>
+      <div class="d-desc">Programme complet pour lancer et scaler votre agence de marketing depuis zéro. Toutes nos méthodes, expliquées étape par étape.</div>
+      <div class="d-features">
+        <div class="d-feature">Accès à vie + mises à jour incluses</div>
+        <div class="d-feature">Modules vidéo + ressources téléchargeables</div>
+        <div class="d-feature">Templates de contrats, offres et scripts</div>
+      </div>
+    </div>
+    <div class="digital-card">
+      <div class="d-type">Accompagnement personnalisé</div>
+      <div class="d-name">Coaching Individuel</div>
+      <div class="d-price silver">3 000 CHF</div>
+      <div class="d-desc">12 semaines de suivi individuel pour construire votre agence avec nous. Sessions hebdomadaires en visio, accès direct entre les sessions.</div>
+      <div class="d-features">
+        <div class="d-feature">12 sessions hebdomadaires en visio</div>
+        <div class="d-feature">Accès direct par message entre les sessions</div>
+        <div class="d-feature">Plan d'action personnalisé semaine par semaine</div>
+        <div class="d-feature">Résultats garantis ou remboursés</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Scalyra Agency</div>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="about.html">À propos</a>
+    <a href="contact.html">Contact</a>
+    <a href="mailto:scalyra.agency@gmail.com">scalyra.agency@gmail.com</a>
+  </div>
+</footer>
+<script>
+  const c=document.getElementById('cursor'),r=document.getElementById('cursorRing');
+  document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';setTimeout(()=>{r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';},80);});
+</script>
+</body>
+</html>

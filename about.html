@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scalyra Agency — À propos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0A0A0A; color:#fff; font-family:'Cormorant Garamond',serif; cursor:none; }
+  .cursor { position:fixed; width:6px; height:6px; background:#fff; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+  .cursor-ring { position:fixed; width:28px; height:28px; border:1px solid rgba(255,255,255,.35); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .12s ease; }
+  .silver { background:linear-gradient(180deg,#888 0%,#CCC 30%,#F0F0F0 50%,#AAA 70%,#777 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:24px 64px; display:flex; align-items:center; justify-content:space-between; background:rgba(10,10,10,.92); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,.05); }
+  .nav-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
+  .nav-name { font-size:20px; font-weight:700; font-style:italic; background:linear-gradient(180deg,#888,#CCC 40%,#F0F0F0 50%,#AAA 70%,#777); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .nav-links { display:flex; gap:40px; list-style:none; }
+  .nav-links a { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.4); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover,.nav-links a.active { color:#fff; }
+  .nav-cta { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#0A0A0A; background:linear-gradient(180deg,#AAA,#EEE 50%,#AAA); text-decoration:none; padding:10px 24px; }
+
+  .hero { padding:140px 64px 80px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; border-bottom:1px solid rgba(255,255,255,.07); }
+  .s-tag { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:5px; color:rgba(255,255,255,.22); text-transform:uppercase; margin-bottom:14px; }
+  .s-title { font-size:clamp(48px,7vw,88px); font-weight:700; font-style:italic; line-height:.95; }
+  .hero-intro { font-size:18px; font-weight:300; font-style:italic; color:rgba(255,255,255,.42); line-height:1.7; }
+
+  .section { padding:80px 64px; border-bottom:1px solid rgba(255,255,255,.07); }
+
+  .vision-grid { display:grid; grid-template-columns:1fr 1px 1fr; gap:0 56px; }
+  .v-divider { background:rgba(255,255,255,.07); }
+  .v-title { font-size:28px; font-weight:700; font-style:italic; color:#fff; margin-bottom:16px; }
+  .v-text { font-size:16px; font-weight:300; color:rgba(255,255,255,.42); line-height:1.75; }
+
+  .phases { display:flex; flex-direction:column; }
+  .phase { display:flex; gap:28px; padding:24px 0; border-bottom:.5px solid rgba(255,255,255,.06); }
+  .phase:last-child { border-bottom:none; }
+  .phase-num { font-family:'Courier Prime',monospace; font-size:10px; color:rgba(255,255,255,.16); min-width:26px; padding-top:4px; }
+  .phase-title { font-size:21px; font-weight:700; font-style:italic; color:#fff; margin-bottom:6px; }
+  .phase-desc { font-size:14px; color:rgba(255,255,255,.36); font-weight:300; line-height:1.6; max-width:540px; }
+  .phase-goal { display:inline-block; margin-top:8px; font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; border:.5px solid rgba(255,255,255,.12); padding:4px 12px; background:linear-gradient(180deg,#888,#CCC 30%,#F0F0F0 50%,#AAA 70%,#777); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .v-card { background:#0e0e0e; border:1px solid rgba(255,255,255,.07); padding:34px 28px; }
+  .v-num { font-family:'Courier Prime',monospace; font-size:9px; color:rgba(255,255,255,.16); margin-bottom:14px; }
+  .v-card-title { font-size:21px; font-weight:700; font-style:italic; color:#fff; margin-bottom:8px; }
+  .v-card-desc { font-size:13.5px; color:rgba(255,255,255,.33); font-weight:300; line-height:1.6; }
+
+  .cta { padding:100px 64px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+  .cta-title { font-size:clamp(30px,4vw,52px); font-weight:700; font-style:italic; line-height:1.1; max-width:440px; }
+  .btn-primary { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#0A0A0A; background:linear-gradient(180deg,#AAA,#EEE 50%,#AAA); text-decoration:none; padding:14px 32px; white-space:nowrap; }
+
+  footer { padding:38px 64px; border-top:1px solid rgba(255,255,255,.07); display:flex; align-items:center; justify-content:space-between; }
+  .footer-copy { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,.14); text-transform:uppercase; }
+  .footer-links { display:flex; gap:28px; }
+  .footer-links a { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,.2); text-decoration:none; text-transform:uppercase; transition:color .2s; }
+  .footer-links a:hover { color:#fff; }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="36" height="36">
+      <defs><linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#777"/><stop offset="50%" style="stop-color:#F0F0F0"/><stop offset="100%" style="stop-color:#777"/>
+      </linearGradient></defs>
+      <polygon points="40,3 77,40 40,77 3,40" fill="none" stroke="url(#sg)" stroke-width="1.5"/>
+      <polygon points="40,14 66,40 40,66 14,40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".8"/>
+      <text x="40" y="54" font-family="serif" font-size="36" font-weight="700" font-style="italic" fill="url(#sg)" text-anchor="middle" letter-spacing="-2">SA</text>
+    </svg>
+    <span class="nav-name">Scalyra</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html" class="active">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Démarrer →</a>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="s-tag">Notre histoire</div>
+    <h1 class="s-title">Construits<br>pour <span class="silver">scaler.</span></h1>
+  </div>
+  <div>
+    <p class="hero-intro">Scalyra est née d'une conviction simple : les petites entreprises ont un excellent produit mais une présence digitale qui ne le reflète pas. On est là pour changer ça — avec des résultats mesurables dès le premier mois.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="s-tag">Vision & Approche</div>
+  <div class="vision-grid">
+    <div>
+      <div class="v-title">Pourquoi Scalyra ?</div>
+      <div class="v-text">Notre premier client a vu son CA doubler en moins de 3 semaines. C'est ça notre standard — pas des belles slides, des vrais résultats. On ne vend pas des forfaits, on construit des partenariats.</div>
+    </div>
+    <div class="v-divider"></div>
+    <div>
+      <div class="v-title">Notre approche</div>
+      <div class="v-text">Stratégie personnalisée, communication directe, objectifs clairs. On grandit quand vous grandissez — c'est pour ça qu'on s'engage sur des résultats contractuels dans notre offre Scale.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="s-tag">Plan de croissance</div>
+  <div class="phases">
+    <div class="phase"><div class="phase-num">01</div><div><div class="phase-title">Scaler nos premiers clients</div><div class="phase-desc">On prouve avant de vendre. Chaque client existant est maximisé pour construire des études de cas qui parlent d'elles-mêmes.</div><span class="phase-goal">En cours — Barbermove Genève</span></div></div>
+    <div class="phase"><div class="phase-num">02</div><div><div class="phase-title">Acquérir de nouveaux clients</div><div class="phase-desc">Avec une preuve sociale béton, on prospecte des commerces premium locaux puis des entreprises à distance. Objectif : 3 à 5 clients en 6 mois.</div><span class="phase-goal">Objectif — 4 000 à 6 000 CHF/mois</span></div></div>
+    <div class="phase"><div class="phase-num">03</div><div><div class="phase-title">Déléguer et automatiser</div><div class="phase-desc">Une fois le flux stable, on intègre des freelances pour l'exécution. On garde le stratégique, on délègue l'opérationnel. L'IA réduit les coûts au maximum.</div><span class="phase-goal">Objectif — Marge nette 60%+</span></div></div>
+    <div class="phase"><div class="phase-num">04</div><div><div class="phase-title">Monétiser l'expertise</div><div class="phase-desc">Formation + accompagnement pour ceux qui veulent créer leur propre agence. Ce qu'on a construit, on le transmet.</div><span class="phase-goal">Formation 997 CHF · Accompagnement 3 000 CHF</span></div></div>
+  </div>
+</div>
+
+<div class="section" style="border-bottom:none">
+  <div class="s-tag">Nos valeurs</div>
+  <div class="values-grid">
+    <div class="v-card"><div class="v-num">01</div><div class="v-card-title">Résultats avant tout</div><div class="v-card-desc">Pas de métriques de vanité. Ce qui compte c'est votre chiffre d'affaires et votre croissance réelle.</div></div>
+    <div class="v-card"><div class="v-num">02</div><div class="v-card-title">Transparence totale</div><div class="v-card-desc">Rapports clairs, communication directe. Vous savez toujours exactement ce qu'on fait et pourquoi.</div></div>
+    <div class="v-card"><div class="v-num">03</div><div class="v-card-title">Exécution rapide</div><div class="v-card-desc">On agit vite, on teste, on ajuste. Pas de réunions inutiles — que de l'action.</div></div>
+  </div>
+</div>
+
+<div class="cta">
+  <h2 class="cta-title">Vous voulez faire partie de l'aventure ?</h2>
+  <a href="contact.html" class="btn-primary">Prendre contact →</a>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Scalyra Agency</div>
+  <div class="footer-links">
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="mailto:scalyraagency@gmail.com">scalyraagency@gmail.com</a>
+  </div>
+</footer>
+<script>
+  const c=document.getElementById('cursor'),r=document.getElementById('cursorRing');
+  document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';setTimeout(()=>{r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';},80);});
+</script>
+</body>
+</html>
