@@ -130,7 +130,7 @@
   .team-member:hover .member-arrow { transform:translateX(4px); color:var(--gold); }
 
   /* ============ SECTION ============ */
-  .section { padding:110px 48px; position:relative; }
+  .section { padding:110px 48px; position:relative; overflow:hidden; }
   .section-eyebrow { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:5px; color:var(--text-faint); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:14px; }
   .section-eyebrow::before { content:''; width:24px; height:1px; background:var(--gold); }
   .section-title { font-size:clamp(40px,6vw,76px); font-weight:700; font-style:italic; line-height:1; }
@@ -273,6 +273,87 @@
     .floating-cta span { display:none; }
     footer { padding:32px 20px; flex-direction:column; align-items:flex-start; gap:16px; }
   }
+
+  /* ===== PREMIUM UPGRADES ===== */
+  :root {
+    --bone: #EDE6D6;
+    --bone-grad: linear-gradient(180deg,#C8BFA7 0%,#E6DFCB 40%,#F2ECDB 50%,#D9D0B8 70%,#A89E84 100%);
+    --gold-soft: linear-gradient(180deg,#8C7340 0%,#C9A86A 40%,#E8D4A8 55%,#C9A86A 75%,#7E6438 100%);
+  }
+  /* Replace .silver with bone-white gradient — more premium */
+  .silver {
+    background: var(--bone-grad);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.4;
+    pointer-events:none;
+    z-index:1;
+  }
+  nav, section, div, footer, .floating-cta { position:relative; z-index:2; }
+  #intro { z-index:9999 !important; }
+
+
+
+  /* Section numbering */
+  .section-number { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:5px; color:rgba(201,168,106,0.55); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:14px; }
+  .section-number::before { content:''; width:24px; height:1px; background:#C9A86A; }
+
+  /* SA Logo watermark — centered full logo */
+  .watermark { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; user-select:none; z-index:0; width:clamp(360px,48vw,620px); height:clamp(360px,48vw,620px); display:flex; align-items:center; justify-content:center; }
+  .watermark-svg { width:100%; height:100%; opacity:1; }
+  @media(max-width:900px) { .watermark { width:280px; height:280px; opacity:.7; } }
+
+  /* Pull quote full-page section */
+  .pull-quote-section { padding:160px 48px; text-align:center; position:relative; border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:hidden; }
+  .pull-quote-line-top { width:80px; height:1px; background:linear-gradient(90deg, transparent, #C9A86A, transparent); margin:0 auto 36px; }
+  .pull-quote-mark { font-family:'Cormorant Garamond',serif; font-size:120px; font-style:italic; color:rgba(201,168,106,0.18); line-height:0.2; margin-bottom:30px; }
+  .pull-quote { font-size:clamp(28px,4.5vw,52px); font-weight:300; font-style:italic; line-height:1.25; max-width:920px; margin:0 auto 36px; letter-spacing:-.5px; }
+  .pull-quote-attr { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:5px; color:rgba(255,255,255,0.4); text-transform:uppercase; }
+  .pull-quote-line-bottom { width:40px; height:1px; background:#C9A86A; margin:36px auto 0; }
+
+  /* Premium footer */
+  footer.premium { padding:80px 48px 32px; border-top:1px solid var(--border); position:relative; overflow:hidden; }
+  footer.premium::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100px; height:1px; background:linear-gradient(90deg, transparent, #C9A86A, transparent); }
+  .footer-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+  .footer-col h4 { font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:4px; color:#C9A86A; text-transform:uppercase; margin-bottom:18px; }
+  .footer-brand-name { font-size:32px; font-weight:700; font-style:italic; background:var(--bone-grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; }
+  .footer-tag { font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; color:var(--text-faint); text-transform:uppercase; margin-bottom:20px; }
+  .footer-signature { font-size:14px; font-style:italic; color:var(--text-dim); line-height:1.6; max-width:280px; }
+  .footer-col ul { list-style:none; padding:0; }
+  .footer-col ul li { margin-bottom:10px; }
+  .footer-col ul a, .footer-col ul span { font-size:14px; color:rgba(255,255,255,0.55); text-decoration:none; font-style:italic; transition:color .2s; }
+  .footer-col ul a:hover { color:#C9A86A; }
+  .footer-bottom { padding-top:28px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .footer-bottom-copy { font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:3px; color:var(--text-faint); text-transform:uppercase; }
+  .footer-legal { display:flex; gap:24px; flex-wrap:wrap; }
+  .footer-legal a { font-family:'Courier Prime',monospace; font-size:8px; letter-spacing:2px; color:rgba(255,255,255,0.3); text-decoration:none; text-transform:uppercase; transition:color .2s; }
+  .footer-legal a:hover { color:#C9A86A; }
+
+  /* Stat numbers — lighter, more refined */
+  .stat-num {
+    font-weight:400 !important;
+    font-size:clamp(48px,7vw,84px) !important;
+    letter-spacing:-2px;
+  }
+
+  @media(max-width:900px) {
+    .watermark { opacity:.7; }
+    .pull-quote-section { padding:80px 20px; }
+    .pull-quote { font-size:clamp(22px,7vw,38px); }
+    footer.premium { padding:48px 20px 24px; }
+    .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+    .footer-grid .footer-col:first-child { grid-column:1 / -1; }
+  }
+
 </style>
 </head>
 <body>
@@ -366,6 +447,16 @@
   </div>
 </div>
 
+
+<!-- PULL QUOTE -->
+<section class="pull-quote-section reveal">
+  <div class="pull-quote-line-top"></div>
+  <div class="pull-quote-mark">"</div>
+  <p class="pull-quote">Nous ne vendons pas du contenu.<br>Nous vendons de <span class="silver">la croissance mesurable.</span></p>
+  <div class="pull-quote-attr">Scalyra Agency · Méthode</div>
+  <div class="pull-quote-line-bottom"></div>
+</section>
+
 <!-- TEAM -->
 <div class="team-section">
   <div class="team-photo reveal">
@@ -401,9 +492,13 @@
 </div>
 
 <!-- OFFRES -->
-<section class="section">
+<section class="section"><div class="watermark"><svg class="watermark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" aria-hidden="true">
+  <polygon points="40,3 77,40 40,77 3,40" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1.2"/>
+  <polygon points="40,14 66,40 40,66 14,40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".7"/>
+  <text x="40" y="56" font-family="serif" font-size="38" font-weight="700" font-style="italic" fill="rgba(255,255,255,0.14)" text-anchor="middle" letter-spacing="-2">SA</text>
+</svg></div>
   <div class="offers-intro reveal">
-    <div class="section-eyebrow">Nos offres</div>
+    <div class="section-number">01 / 04 — Nos offres</div>
     <h2 class="section-title">Simple.<br><span class="silver">Transparent.</span></h2>
     <p class="section-sub">Trois formules. Zéro frais cachés. Vous choisissez, on exécute.</p>
   </div>
@@ -514,7 +609,7 @@
 <!-- FAQ -->
 <section class="section">
   <div class="reveal">
-    <div class="section-eyebrow">Questions fréquentes</div>
+    <div class="section-number">03 / 04 — Questions fréquentes</div>
     <h2 class="section-title" style="margin-bottom:48px">On répond.<br><span class="silver">Directement.</span></h2>
   </div>
   <div class="faq-list">
@@ -532,27 +627,65 @@
   <h2 class="cta-title">Prêt à passer<br><span class="silver">à la vitesse supérieure ?</span></h2>
   <p class="cta-sub">Audit stratégique de 30 minutes. Sans engagement.</p>
   <div class="cta-actions">
-    <a href="https://calendly.com/scalyra-agency" target="_blank" class="btn-silver">Réserver un appel gratuit</a>
+    <a href="https://calendly.com/scalyra-agency/30min" target="_blank" class="btn-silver">Réserver un appel gratuit</a>
     <a href="services.html" class="btn-outline">Voir toutes nos offres →</a>
   </div>
 </section>
 
 <div class="floating-cta" id="floatingCta">
   <span>Prêt à scaler ?</span>
-  <a href="https://calendly.com/scalyra-agency" target="_blank">Appel gratuit →</a>
+  <a href="https://calendly.com/scalyra-agency/30min" target="_blank">Appel gratuit →</a>
 </div>
 
-<footer>
-  <div class="footer-copy">© 2026 Scalyra Agency — Genève</div>
-  <div class="footer-links">
-    <a href="services.html">Services</a>
-    <a href="about.html">À propos</a>
-    <a href="contact.html">Contact</a>
-    <a href="mailto:scalyra.agency@gmail.com">Email</a>
+<footer class="premium">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand-name">Scalyra Agency</div>
+      <div class="footer-tag">Genève · Agence Marketing</div>
+      <p class="footer-signature">Acquisition digitale, contenu et stratégie — exécutés au plus haut niveau par les fondateurs.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:scalyra.agency@gmail.com">scalyra.agency@gmail.com</a></li>
+        <li><a href="tel:+41766086535">+41 76 608 65 35</a></li>
+        <li><a href="https://instagram.com/scalyra.agency" target="_blank">@scalyra.agency</a></li>
+        <li><a href="https://calendly.com/scalyra-agency/30min" target="_blank">Réserver un appel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Disponibilité</h4>
+      <ul>
+        <li><span>Mar — Jeu</span></li>
+        <li><span>11h00 — 13h00</span></li>
+        <li><span>15h00 — 18h00</span></li>
+        <li><span style="color:#C9A86A">2 places · Juin 2026</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-copy">© 2026 Scalyra Agency — Tous droits réservés</div>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Conditions générales</a>
+      <a href="#">Confidentialité</a>
+    </div>
   </div>
 </footer>
 
 <script>
+
+
+
   const introEl = document.getElementById('intro');
   const heroInner = document.getElementById('heroInner');
   const mainNav = document.getElementById('mainNav');
