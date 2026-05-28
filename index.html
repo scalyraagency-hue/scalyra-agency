@@ -102,7 +102,7 @@
   .hero-scroll::after { content:''; width:40px; height:1px; background:var(--gold); animation:scrollLine 2.5s ease infinite; }
   @keyframes scrollLine { 0%,100%{transform:translateX(0);opacity:.4} 50%{transform:translateX(10px);opacity:1} }
 
-  /* === Indicators (replacing stats) === */
+  /* === Indicators (process-based) === */
   .indicators { padding:80px 48px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg-2); }
   .indicators-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; max-width:1280px; margin:0 auto; }
   .indicator { padding:0 40px; border-right:1px solid var(--border); position:relative; }
@@ -118,6 +118,7 @@
   .section-head.center { text-align:center; }
   .section-head.center .eyebrow { justify-content:center; }
   .section-head.center .section-sub { margin-left:auto; margin-right:auto; }
+
 
   /* === EXPERTISE / SITUATION (problem) === */
   .situation-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1280px; margin:0 auto; }
@@ -182,8 +183,9 @@
   .extra-price { font-family:var(--serif); font-size:24px; font-weight:500; font-style:italic; letter-spacing:-.5px; }
   .extra-note { font-family:var(--mono); font-size:9px; letter-spacing:2px; color:var(--text-faint); text-transform:uppercase; margin-top:4px; }
 
+
   /* === CASE STUDY === */
-  .case-section { background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .case-section { background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:140px 48px; }
   .case-card { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
   .case-content .case-eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:24px; display:flex; align-items:center; gap:14px; }
   .case-content .case-eyebrow::before { content:''; width:32px; height:1px; background:var(--gold); }
@@ -197,12 +199,7 @@
   .case-visual::after { content:''; position:absolute; bottom:24px; right:24px; width:48px; height:48px; border:1px solid var(--gold-soft); }
   .case-logo-img { width:100%; max-width:280px; height:auto; filter:brightness(0) invert(1); opacity:.9; }
 
-
-  /* About title — smaller, more breathing room */
-  .about-title { font-family:var(--serif); font-size:clamp(28px,3.2vw,42px); font-weight:400; line-height:1.25; letter-spacing:-.8px; margin-top:32px; }
-  .about-title em { font-style:italic; background:var(--bone); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-
-  /* === ABOUT (les fondateurs) === */
+    /* === ABOUT (les fondateurs) === */
   .about-section { padding:160px 48px; }
   .about-intro { max-width:1280px; margin:0 auto 80px; display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:end; }
   .about-quote { font-family:var(--serif); font-size:clamp(17px,1.6vw,20px); font-weight:400; font-style:italic; line-height:1.65; color:var(--text-dim); border-left:1px solid var(--gold); padding-left:24px; max-width:480px; }
@@ -321,10 +318,11 @@
   /* === RESPONSIVE === */
   @media(max-width:1024px) {
     .container { padding:0 32px; }
-    section { padding:100px 32px; }
     .indicators { padding:60px 32px; }
     .indicators-grid { grid-template-columns:repeat(2,1fr); gap:32px; }
     .indicator { border-right:none; padding:0; }
+    section { padding:100px 32px; }
+    
     .situation-grid { grid-template-columns:repeat(2,1fr); }
     .method-grid { grid-template-columns:repeat(2,1fr); }
     .offers-grid { grid-template-columns:1fr; }
@@ -340,6 +338,8 @@
   }
   @media(max-width:768px) {
     nav { padding:18px 20px; }
+    .indicators { padding:48px 20px; }
+    .indicators-grid { grid-template-columns:1fr; gap:32px; }
     .nav-links, .nav-cta { display:none; }
     .hamburger { display:flex; }
     .container { padding:0 20px; }
@@ -351,8 +351,7 @@
     .hero-actions { flex-direction:column; align-items:stretch; }
     .hero-actions .btn-primary, .hero-actions .btn-ghost { text-align:center; justify-content:center; }
     .hero-scroll { display:none; }
-    .indicators { padding:48px 20px; }
-    .indicators-grid { grid-template-columns:1fr; gap:32px; }
+    
     .section-head { margin-bottom:48px; }
     .situation-grid { grid-template-columns:1fr; }
     .method-grid { grid-template-columns:1fr; }
@@ -457,13 +456,13 @@
   <div class="hero-scroll">Défiler</div>
 </section>
 
-<!-- INDICATORS (process-based) -->
+<!-- INDICATORS -->
 <div class="indicators">
   <div class="indicators-grid">
     <div class="indicator reveal">
       <div class="indicator-num">01</div>
       <div class="indicator-value italic-serif">+12 vidéos</div>
-      <div class="indicator-label">produites chaque mois pour chaque client Growth</div>
+      <div class="indicator-label">produites chaque mois pour chaque client</div>
     </div>
     <div class="indicator reveal reveal-d1">
       <div class="indicator-num">02</div>
@@ -477,11 +476,14 @@
     </div>
     <div class="indicator reveal reveal-d3">
       <div class="indicator-num">04</div>
-      <div class="indicator-value italic-serif">Accès direct</div>
-      <div class="indicator-label">aux fondateurs — aucun intermédiaire, aucune sous-traitance</div>
+      <div class="indicator-value italic-serif">2 places</div>
+      <div class="indicator-label">disponibles pour le mois de juin 2026</div>
     </div>
   </div>
 </div>
+  </div>
+</div>
+
 
 <!-- SITUATION (problem identification) -->
 <section id="situation">
