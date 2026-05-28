@@ -839,7 +839,7 @@
     <div class="contact-form reveal reveal-d1">
       <div class="contact-form-title">Demande d'information</div>
       <div class="contact-form-sub">Réponse garantie sous 24 heures.</div>
-      <form action="mailto:scalyra.agency@gmail.com" method="post" enctype="text/plain">
+      <form action="https://formspree.io/f/xwvzywka" method="POST">
         <div class="form-row">
           <div class="form-group"><label class="form-label">Prénom</label><input type="text" class="form-input" name="prenom" placeholder="Jean"></div>
           <div class="form-group"><label class="form-label">Nom</label><input type="text" class="form-input" name="nom" placeholder="Dupont"></div>
@@ -860,6 +860,8 @@
           </select>
         </div>
         <div class="form-group"><label class="form-label">Votre message</label><textarea class="form-textarea" name="message" placeholder="Décrivez votre projet en quelques lignes..."></textarea></div>
+        <input type="hidden" name="_subject" value="Nouvelle demande — Site Scalyra">
+        <input type="hidden" name="_language" value="fr">
         <button type="submit" class="form-submit">Envoyer la demande →</button>
       </form>
     </div>
